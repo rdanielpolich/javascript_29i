@@ -251,3 +251,11 @@ let personas = [
   "Samuel",
   "Valentina",
 ];
+
+function obtenerNombreconletra(letra) {
+  let nombres = personas.filter(function (nombre) {
+    return nombre.toUpperCase().includes(letra.toUpperCase);
+  });
+  return nombres;
+}
+console.log(obtenerNombreConLetra("m"));

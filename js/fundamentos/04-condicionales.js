@@ -209,7 +209,8 @@ switch (true) {
     break;
 }
 
-// Se nos pide hacer un programa donde el usuario ingrese dos números y la operación a realizar. Según la operación (suma, resta, multiplicación y división) devolver en consola el resultado
+// Se nos pide hacer un programa donde el usuario ingrese dos números y la operación a realizar. 
+//Según la operación (suma, resta, multiplicación y división) devolver en consola el resultado
 
 let num1 = parseFloat(prompt("Ingrese el primer número"));
 let num2 = parseFloat(prompt("Ingrese el segundo número"));
