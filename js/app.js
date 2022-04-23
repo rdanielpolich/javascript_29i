@@ -1,76 +1,106 @@
-//Objetos
+let data = [
+  {
+    id: 7,
+    email: "michael.lawson@reqres.in",
+    first_name: "Michael",
+    last_name: "Lawson",
+    avatar: "https://reqres.in/img/faces/7-image.jpg",
+  },
+  {
+    id: 8,
+    email: "lindsay.ferguson@reqres.in",
+    first_name: "Lindsay",
+    last_name: "Ferguson",
+    avatar: "https://reqres.in/img/faces/8-image.jpg",
+  },
+  {
+    id: 9,
+    email: "tobias.funke@reqres.in",
+    first_name: "Tobias",
+    last_name: "Funke",
+    avatar: "https://reqres.in/img/faces/9-image.jpg",
+  },
+  {
+    id: 10,
+    email: "byron.fields@reqres.in",
+    first_name: "Byron",
+    last_name: "Fields",
+    avatar: "https://reqres.in/img/faces/10-image.jpg",
+  },
+  {
+    id: 11,
+    email: "george.edwards@reqres.in",
+    first_name: "George",
+    last_name: "Edwards",
+    avatar: "https://reqres.in/img/faces/11-image.jpg",
+  },
+  {
+    id: 12,
+    email: "rachel.howell@reqres.in",
+    first_name: "Rachel",
+    last_name: "Howell",
+    avatar: "https://reqres.in/img/faces/12-image.jpg",
+  },
+];
 
-let alumno = {
-  nombre: "Josefina Alvarez",
-  edad: 38,
-  dni: 29148728,
-  curso: "Fullstack",
-  saludar: function () {
-    console.log(`Hola soy ${this.nombre}`);
-  },
-  calcularVejez: function () {
-    if (this.edad > 35) {
-      console.log("tamos cerca de los 40 amigo 👴");
-    } else console.log("tranquilo todavia hay esperanza");
-  },
+//Crear funciones que realicen las siguientes tareas:
+
+//1- Mostrar una lista con los nombres completos en orden alfabético
+const listarUsuarios = function () {
+  let usuariosOrdenados = data.map(function (alumno) {
+    return `${alumno.last_name}${alumno.first_name}`;
+  });
+  //   console.log(usuariosOrdenados.sort());
+
+  usuariosOrdenados.sort().forEach(function (alumno, index) {
+    console.log(`${index + 1}- ${alumno}`);
+  });
 };
 
-// obtener valores
-console.log(alumno.nombre);
-console.log(alumno["curso"]);
-
-//agregar una propiedad
-alumno.domicilio = "Esquina Norte";
-
-//modificar un valor de una propiedad
-alumno.nombre = "Josefina Gonzalez";
-
-//eliminar una propiedad del objeto
-// delete alumno.edad;
-
-//Como puedo recorrer un objeto
-for (const atributo in alumno) {
-  if (atributo !== "saludar") {
-    console.log(`${atributo}: ${alumno[atributo]}`);
-  }
+//2- Crear tarjetas de presentación con los datos de los usuarios
+function tarjetasPresentacion() {
+  data.array.forEach(function (user) {
+    document.write(`---------Tarjeta de Presentación----------- <br/>`);
+    document.write(`<b>Nombre:</b> ${user.last_name} ${user.first_name} <br/>`);
+    document.write(`<b>Correo:</b> ${persona.email}<br/><br/>`);
+  });
 }
+//3- Agregar un usuario más al final de la lista
+function agregarUsuario() {
+  let idNuevo = data[data.length - 1].id++;
+  let nombre = prompt("Ingrese el nombre del usuario");
+  let apellido = prompt("Ingrese el apellido del usuario");
+  let correo = prompt("Ingrese el correo del usuario");
+  let avatar = prompt("Ingrese la url de la imagen de su avatar");
+  data.push({
+    id: idNuevo,
+    email: correo,
+    first_name: nombre,
+    last_name: apellido,
+    avatar: avatar,
+  });
+}
+//4- Actualizar el nombre de un usuario
+//la funcion necesita saber cual es el usuario [id]
+//usar el id para identificar el usuario
+//pedir nuevo nombre
+//guardar la info en data
 
-/*
-Objeto Persona con las propiedades nombre,edad y genero
-y el metodo obtDetalles(), que muestra por pantalla las
-propiedades de la persona
-*/
+const actualizarNombre = function (id) {
+  let index = data.findIndex(function (user) {
+    return user.id === id;
+  });
+  if (index < 0) {
+    return "el id ingresado no existe";
+  }
 
-let persona = {
-  nombre: "Florencia Espeche",
-  edad: 34,
-  genero: "Femenino",
-  obtDetalles: function () {
-    for (const propiedad in this) {
-      if (propiedad !== "obtDetalles") {
-        console.log(`${propiedad}: ${this[propiedad]}`);
-      }
-    }
-  },
+  let nuevoNombre = prompt(
+    "Ingrese el nuevo Nombre para " + data[index].first_name
+  );
+
+  data[index].first_name = nuevoNombre;
 };
 
-/*
-2- Crea un objeto llamado auto que tenga algunas características como el color, marca, modelo y si está encendido o apagado. Crea los métodos necesarios para permitir encender y apagar el auto.
+//5- Eliminar un usuario en particular
 
-*/
-
-let auto = {
-  color: "rojo",
-  marca: "Fiat",
-  modelo: "Palio",
-  anio: "2018",
-  encendido: false,
-  encenderApagar: function () {
-    this.encendido = !this.encendido;
-    if (this.encendido) {
-      console.log("El vehiculo esta encendido");
-    } else {
-      console.log("El vehiculo esta apagado");
-    }
-  },
-};
+//6- Realizar búsqueda de usuarios cuyo apellido coincida con el termino a buscar
