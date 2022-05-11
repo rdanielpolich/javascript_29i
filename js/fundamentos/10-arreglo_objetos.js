@@ -48,36 +48,50 @@ let data = [
 //1- Mostrar una lista con los nombres completos en orden alfabético
 const listarUsuarios = function (array = data) {
   let usuariosOrdenados = array.map(function (alumno) {
-    return `${alumno.last_name}${alumno.first_name}`;
+    return `${alumno.last_name} ${alumno.first_name}`;
   });
-  //   console.log(usuariosOrdenados.sort());
 
   usuariosOrdenados.sort().forEach(function (alumno, index) {
-    console.log(`${index + 1}- ${alumno}`);
+    console.log(`${index + 1} - ${alumno}`);
   });
 };
 
-//2- Crear tarjetas de presentación con los datos de los usuarios
+//2- Crear tarjetas de presentación con los datos de los usuarios (apellido, nombre, correo)
 function tarjetasPresentacion() {
-  data.array.forEach(function (user) {
-    document.write(`---------Tarjeta de Presentación----------- <br/>`);
-    document.write(`<b>Nombre:</b> ${user.last_name} ${user.first_name} <br/>`);
-    document.write(`<b>Correo:</b> ${persona.email}<br/><br/>`);
+  /*
+  ------Tarjeta de presentación------
+  Nombre: Pepe Argento
+  Correo: peperancingclub@gmail.com
+  
+  */
+  data.forEach(function (persona) {
+    document.write(
+      `<strong>------Tarjeta de presentación------</strong><br />`
+    );
+    document.write(
+      `<b>Nombre:</b> ${persona.last_name} ${persona.first_name}<br />`
+    );
+    document.write(`<b>Correo:</b> ${persona.email}<br /><br />`);
   });
 }
+
 //3- Agregar un usuario más al final de la lista
 function agregarUsuario() {
-  let idNuevo = data[data.length - 1].id++;
+  let idNuevo = data[data.length - 1].id + 1;
+
   let nombre = prompt("Ingrese el nombre del usuario");
   let apellido = prompt("Ingrese el apellido del usuario");
   let correo = prompt("Ingrese el correo del usuario");
-  let avatar = prompt("Ingrese la url de la imagen de su avatar");
+  let avatar = prompt("Ingrese la dirección de la imagen de su avatar");
 
-  //validar los datos
-  if (isNaN(nombre)) {
-    if (nombre) {
-    }
-  }
+  //validar los datos a guardar
+  // console.log(nombre);
+
+  // if (isNaN(nombre)) {
+  //   console.log("No es un número");
+
+  //   if(nombre){}
+  // }
 
   data.push({
     id: idNuevo,
@@ -87,25 +101,44 @@ function agregarUsuario() {
     avatar: avatar,
   });
 }
+
 //4- Actualizar el nombre de un usuario
-//la funcion necesita saber cual es el usuario [id]
-//usar el id para identificar el usuario
-//pedir nuevo nombre
-//guardar la info en data
+
+//la funcion necesita saber cual es el usuario (id)
+//usar el id para identificar al usuario
+//pedir el nuevo nombre
+//guardar esa info en data
 
 const actualizarNombre = function (id) {
   let index = data.findIndex(function (user) {
     return user.id === id;
   });
+
   if (index < 0) {
-    return "el id ingresado no existe";
+    return "El id ingresado no existe";
   }
 
   let nuevoNombre = prompt(
-    "Ingrese el nuevo Nombre para " + data[index].first_name
+    "Ingrese el nuevo nombre para " + data[index].first_name
   );
 
   data[index].first_name = nuevoNombre;
+};
+
+//5- Eliminar un usuario en particular
+const borrarUsuario = function (id) {
+  let indice = validarId(id);
+
+  if (indice < 0) {
+    return "El id ingresado no existe";
+  }
+
+  let validar = confirm("Está seguro que desea eliminar al usuario");
+
+  if (validar) {
+    data.splice(indice, 1);
+    alert(`El usuario con el id ${id} fue eliminado`);
+  }
 };
 
 function validarId(id) {
@@ -116,27 +149,19 @@ function validarId(id) {
   return index;
 }
 
-//5- Eliminar un usuario en particular
-const borrarUsuario = function (id) {
-  let indice = validarId(id);
-  if (indice < 0) {
-    return "El id ingresado no existe";
-  }
-  let validar = confirm(
-    `esta seguro que desea eliminar al usuario ${data.nombre[id]}?`
-  );
-  if (validar) {
-    data.splice(indice, 1);
-    alert(`El usuario con el id ${id} fue eliminado`);
-  }
-};
 //6- Realizar búsqueda de usuarios cuyo apellido coincida con el termino a buscar
+
 const filtrarUsuariosPorApellido = function (termino = "") {
   let resultado = data.filter(function (user) {
     return user.last_name.toLowerCase().includes(termino.toLowerCase());
   });
-  if (resultado === 0) {
+
+  if (resultado.length === 0) {
     console.log("No se encontraron coincidencias");
   }
+  // console.log(resultado);
   listarUsuarios(resultado);
 };
+
+//CRUD
+//CREATE, READ, UPDATE, DELETE

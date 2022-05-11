@@ -7,20 +7,52 @@
     <title>Javascript</title>
   </head>
   <body>
-    <h1>Clase de Javascript</h1>
+    <h1 id="title" class="titulo">Clase de Javascript</h1>
+    <input type="checkbox" id="toggle">
+    <style>
+      .img-dom {
+        width: 150px;
+      }
+      .fondo{
+        background-color: aqua;
+      }
+
+      .dark-mode{
+        background-color: black;
+        color: white;
+      }
+    </style>
+
+    <h3 id="parrafito">Redireccionando...</h3>
+
+    <div id="lista">
+      <ul>
+        <li>sacar la basura</li>
+        <li>pasear al perro</li>
+        <li>estudiar ingles</li>
+      </ul>
+    </div>
+    <button onclick="alert("Hola Chicos!!🤩")">click me!</button>
+    <button onclick="mostrarMensaje()">click me now!!</button>
+    <button onclick="saludar("Pablo Marino")>Saludar</button>
+<br>
+<br>
+    <input 
+    id="campo" 
+    type="text" 
+    onclick="cambiarColor()" 
+    onblur="quitarColor()"
+    onchange="cambioInput(event)"
+    >
+<br>
+<br>
+<input type="text" id="text_nombre" placeholder="ingresa tu nombre" ">
+<button onclick="inputSaludar()">Mostrar</button>
+
+
 
     <script src="./js/app.js"></script>
 
-    <script>
-      //código de Js
-      //alert("Bienvenidos a Javascript");
-
-      //mensajes en la consola
-      //console.log("Bienvenidos a Javascript");
-      //console.log(5 + 3);
-
-      //mostrar en el navegador
-      //document.write("Es un gusto saludarte en este curso");
-    </script>
+    <script></script>
   </body>
 </html>
